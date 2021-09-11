@@ -6,21 +6,40 @@
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class AccountTriggerHandler {
-    public AccountTriggerHandler() {
 
 
         //BEFORE INSERT
-        public static void beforeInsert(List<Account> newAccounts);
+        public static void beforeInsert(List<Account> newAccounts){
+
+        }
 
         //BEFORE UPDATE
-        public static void beforeUpdate(Map<ID, Account> newAccountMap, Map<ID, Account> oldAccountMap);
+        public static void beforeUpdate(Map<ID, Account> newAccountMap, Map<ID, Account> oldAccountMap){
+
+        }
 
         //AFTER INSERT
-        public static void afterInsert(List<Account> newAccounts);
+        public static void afterInsert(List<Account> newAccounts){
+            for (Account newAccount: newAccounts) {
+
+                newAccount.AccountNumber = String.valueOf(Integer.valueOf(newAccount.AccountNumber) + 1);
+                
+            }
+
+            update newAccounts;
+        }
 
         //AFTER UPDATE
-        public static void afterUpdate (Map<ID, Account> newAccountMap, Map<ID, Account> oldAccountMap);
+        public static void afterUpdate (Map<ID, Account> newAccountMap, Map<ID, Account> oldAccountMap){
+            for (Account newAccount: newAccountMap.values()) {
 
-    }
+                newAccount.AccountNumber = String.valueOf(Integer.valueOf(newAccount.AccountNumber) + 1);
+                
+            }
+
+            update newAccountMap.values();
+        }
+
+    
 }
   

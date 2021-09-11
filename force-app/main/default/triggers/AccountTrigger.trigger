@@ -26,4 +26,5 @@ trigger AccountTrigger on Account (before insert, before update, after insert, a
             AccountTriggerHandler.afterUpdate(Trigger.newMap, Trigger.oldMap);
         }
     }
+
 }
