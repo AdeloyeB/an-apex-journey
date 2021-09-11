@@ -9,6 +9,7 @@ public with sharing class AccountHandler {
     public AccountHandler() {
 
         System.debug('Hello World!');
+        System.debug('Hi World');
 
     }
 }
