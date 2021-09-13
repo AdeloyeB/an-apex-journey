@@ -10,6 +10,17 @@ public with sharing class AccountTriggerHandler {
 
         //BEFORE INSERT
         public static void beforeInsert(List<Account> newAccounts){
+                        for (Account newAccount: newAccounts) {
+
+                if(newAccount.CustomerPriority__c == null){
+                    newAccount.CustomerPriority__c = 'Low';
+                }
+                else{
+                    newAccount.CustomerPriority__c = 'High';
+                }
+                
+            }
+
 
         }
 
@@ -20,24 +31,13 @@ public with sharing class AccountTriggerHandler {
 
         //AFTER INSERT
         public static void afterInsert(List<Account> newAccounts){
-            for (Account newAccount: newAccounts) {
 
-                newAccount.AccountNumber = String.valueOf(Integer.valueOf(newAccount.AccountNumber) + 1);
-                
-            }
 
-            update newAccounts;
         }
 
         //AFTER UPDATE
         public static void afterUpdate (Map<ID, Account> newAccountMap, Map<ID, Account> oldAccountMap){
-            for (Account newAccount: newAccountMap.values()) {
 
-                newAccount.AccountNumber = String.valueOf(Integer.valueOf(newAccount.AccountNumber) + 1);
-                
-            }
-
-            update newAccountMap.values();
         }
 
     
